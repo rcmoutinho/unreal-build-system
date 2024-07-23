@@ -1,7 +1,7 @@
 Unreal Build System
 ===================
 
-This project aims to configure tools and create documentation that will help you learn and set up your Unreal build system. Use this as an inspirational starting point to get your project's CI/CD to the next level.
+This project aims to configure tools and create documentation to help you learn and set up your Unreal build system. Use this as an inspirational starting point to take your project's CI/CD to the next level. Please keep in mind that these are not production setup recommendations but only easy setups for learning purposes. Have fun!
 
 ## About Unreal
 
@@ -21,3 +21,7 @@ docker compose up -d
 ```
 
 Learn more from the folder [Engine/Source/Programs/Horde](https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Source/Programs/Horde).
+
+## License
+
+[MIT License](LICENSE)
