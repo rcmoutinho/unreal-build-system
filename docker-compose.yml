@@ -1,2 +1,2 @@
 include:
-  - docker-compose.horde.yml
+  - horde/docker-compose.yml

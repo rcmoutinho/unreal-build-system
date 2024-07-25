@@ -4,7 +4,7 @@
 # NOTE: Mounted volumes under "./volume" for easy viewing, modifying, and learning purposes (not ideal for a production environment)
 
 include:
-  - docker-compose.network.yml
+  - ../docker-compose.network.yml
 
 services:
   mongodb:
