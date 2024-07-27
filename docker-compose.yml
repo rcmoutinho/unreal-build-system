@@ -1,2 +1,3 @@
 include:
   - horde/docker-compose.yml
+  - perforce/docker-compose.yml

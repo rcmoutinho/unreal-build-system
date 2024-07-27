@@ -1,0 +1,18 @@
+include:
+  - ../docker-compose.network.yml
+
+services:
+  perforce:
+    container_name: perforce
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - perforce_data:/p4
+    ports:
+      - 1666:1666
+
+volumes:
+  perforce_data:
+    driver: local
