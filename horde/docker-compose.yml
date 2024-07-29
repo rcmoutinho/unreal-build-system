@@ -9,6 +9,7 @@ include:
 services:
   mongodb:
     image: mongo:7.0.5-jammy
+    container_name: mongodb
     restart: always
     environment:
       # Default username and password, change these!
@@ -19,9 +20,11 @@ services:
       - 27017:27017
     volumes:
       - mongodb:/data/db
+      - mongodb_config:/data/configdb
 
   redis:
     image: redis:6.2-alpine
+    container_name: redis
     restart: always
     ports:
       - 30002:30002
@@ -32,6 +35,7 @@ services:
   horde-server:
     # Requires access to Unreal Engine's image repository on GitHub
     image: ghcr.io/epicgames/horde-server:latest
+    container_name: horde-server
     restart: always
     environment:
       # Horde uses standard configuration from ASP.NET, allowing values to be set through env vars and files.
@@ -51,6 +55,11 @@ services:
 # Provide persistence between container restarts for MongoDB and Redis
 volumes:
   mongodb:
+    name: mongodb
+    driver: local
+  mongodb_config:
+    name: mongodb_config
     driver: local
   redis:
+    name: redis
     driver: local

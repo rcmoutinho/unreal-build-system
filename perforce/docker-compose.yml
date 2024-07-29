@@ -9,10 +9,11 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - perforce_data:/p4
+      - perforce:/p4
     ports:
       - 1666:1666
 
 volumes:
-  perforce_data:
+  perforce:
+    name: perforce
     driver: local
