@@ -3,7 +3,7 @@
 # Perforce
 
 User: `admin`
-Pass: `buildSystem@123`
+Pass: `buildSystem123`
 
 ## References
 

@@ -2,18 +2,59 @@ include:
   - ../docker-compose.network.yml
 
 services:
-  perforce:
-    container_name: perforce
+  helix-perforce:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: helix-perforce
     restart: always
-    volumes:
-      - perforce:/p4
     ports:
       - 1666:1666
+    volumes:
+      - helix-perforce:/p4
+
+  # https://www.perforce.com/manuals/swarm/Content/Swarm/docker-container.html
+  helix-swarm:
+    image: perforce/helix-swarm:2024.3
+    container_name: helix-swarm
+    restart: always
+    environment:
+      P4D_PORT: helix-perforce:1666 # ssl:perforce:1666
+      P4D_SUPER: admin
+      P4D_SUPER_PASSWD: buildSystem123
+      SWARM_USER: admin
+      SWARM_PASSWD: buildSystem123
+
+      SWARM_HOST: helix-swarm
+
+      SWARM_REDIS: helix-redis
+      SWARM_REDIS_PORT: 30003
+
+      # If set to 'y', then extensions will be installed even if they already exist, overwriting existing configuration
+      SWARM_FORCE_EXT: y
+    ports:
+      - 8000:80
+      - 4443:443
+    volumes:
+      - helix-swarm:/opt/perforce/swarm/data
+
+  helix-redis:
+    image: redis:6.2-alpine
+    container_name: helix-redis
+    restart: always
+    command: redis-server --save 60 1 --port 30003 --loglevel warning
+    ports:
+      - 30003:30003
+    volumes:
+      - helix-redis:/data
 
 volumes:
-  perforce:
-    name: perforce
+  helix-perforce:
+    name: helix-perforce
+    driver: local
+  helix-swarm:
+    name: helix-swarm
+    driver: local
+  helix-redis:
+    name: helix-redis
     driver: local
