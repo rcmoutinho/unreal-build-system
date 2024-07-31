@@ -25,7 +25,8 @@ services:
       SWARM_USER: admin
       SWARM_PASSWD: buildSystem123
 
-      SWARM_HOST: helix-swarm
+      SWARM_HOST: localhost
+      # SWARM_HOST: helix-swarm
 
       SWARM_REDIS: helix-redis
       SWARM_REDIS_PORT: 30003
