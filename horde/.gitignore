@@ -1,0 +1,5 @@
+# ignore mounted-volumes
+server-data/*
+
+# include all json-related configs
+!*.json

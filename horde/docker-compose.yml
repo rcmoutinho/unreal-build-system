@@ -50,7 +50,7 @@ services:
       - 13340:13340 # HTTP/1
       - 13342:13342 # HTTP/2
     volumes:
-      - ./volume/horde-server/data:/app/Data
+      - ./server-data:/app/Data
 
 # Provide persistence between container restarts for MongoDB and Redis
 volumes:
